@@ -4,6 +4,7 @@ import SwiftData
 struct HealthRecordListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var healthRecords: [HealthRecord]
+    @State private var showingAddBowelMovement = false
     
     var body: some View {
         NavigationStack {
@@ -15,34 +16,43 @@ struct HealthRecordListView: View {
                         description: Text("첫 번째 건강 기록을 추가해보세요")
                     )
                 } else {
-                    ForEach(healthRecords) { record in
-                        HStack {
-                            Text(record.type.icon)
-                                .font(.title2)
-                            
-                            VStack(alignment: .leading) {
-                                Text(record.type.rawValue)
-                                    .font(.headline)
-                                
-                                Text(record.date.formatted(date: .abbreviated, time: .shortened))
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                            
-                            Spacer()
-                        }
+                    ForEach(healthRecords.sorted(by: { $0.date > $1.date })) { record in
+                        HealthRecordRow(record: record)
                     }
+                    .onDelete(perform: deleteRecords)
                 }
             }
             .navigationTitle("건강 기록")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        // TODO: 건강 기록 추가
-                    }) {
+                    Menu {
+                        Button(action: {
+                            showingAddBowelMovement = true
+                        }) {
+                            Label("배변 기록", systemImage: "💩")
+                        }
+                        
+                        Button(action: {
+                            // TODO: 다른 건강 기록들
+                        }) {
+                            Label("기타 기록", systemImage: "heart.text.square")
+                        }
+                    } label: {
                         Image(systemName: "plus")
                     }
                 }
+            }
+            .sheet(isPresented: $showingAddBowelMovement) {
+                AddBowelMovementView()
+            }
+        }
+    }
+    
+    private func deleteRecords(offsets: IndexSet) {
+        withAnimation {
+            let sortedRecords = healthRecords.sorted(by: { $0.date > $1.date })
+            for index in offsets {
+                modelContext.delete(sortedRecords[index])
             }
         }
     }
