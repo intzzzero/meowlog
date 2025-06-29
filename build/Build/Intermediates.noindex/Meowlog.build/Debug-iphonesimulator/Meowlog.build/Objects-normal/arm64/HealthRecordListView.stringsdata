@@ -1,0 +1,32 @@
+{
+  "source": "/Users/syjeong/development/Meowlog/Meowlog/Views/HealthRecord/HealthRecordListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "건강 기록",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "첫 번째 건강 기록을 추가해보세요",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 15
+        }
+      },
+      {
+        "comment": "",
+        "key": "건강 기록이 없습니다",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 13
+        }
+      }
+    ]
+  },
+  "version": 1
+}

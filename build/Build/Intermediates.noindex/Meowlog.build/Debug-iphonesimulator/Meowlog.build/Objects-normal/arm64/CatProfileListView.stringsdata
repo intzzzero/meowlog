@@ -1,0 +1,32 @@
+{
+  "source": "/Users/syjeong/development/Meowlog/Meowlog/Views/Profile/CatProfileListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "프로필",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 54
+        }
+      },
+      {
+        "comment": "",
+        "key": "• %lld살",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "• %@",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 41
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,32 @@
+{
+  "source": "/Users/syjeong/development/Meowlog/Meowlog/Views/Onboarding/OnboardingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "MeowLog",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "우리 고양이의 건강을 체계적으로 관리해보세요",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "고양이 등록하고 시작하기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 45
+        }
+      }
+    ]
+  },
+  "version": 1
+}

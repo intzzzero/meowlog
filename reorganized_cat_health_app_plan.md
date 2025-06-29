@@ -18,14 +18,14 @@
 
 | 기능명             | 상세 설명 | 핵심 기술/API |
 |------------------|------------|----------------|
-| **1. 배변 기록**       | 날짜/시간/사진/메모, 이상 여부 선택, 캘린더 보기 | SwiftUI, CoreData, Photo Picker |
-| **2. 투약 스케줄 관리** | 약 종류별 주기 설정 (예: 구충제 매달), 푸시 알림, 복약 여부 체크 | `UserNotifications`, CoreData |
+| **1. 배변 기록**       | 날짜/시간/사진/메모, 이상 여부 선택, 캘린더 보기 | SwiftUI, SwiftData, Photo Picker |
+| **2. 투약 스케줄 관리** | 약 종류별 주기 설정 (예: 구충제 매달), 푸시 알림, 복약 여부 체크 | `UserNotifications`, SwiftData |
 | **3. 프로필 등록**     | 이름, 생일, 입양일, 품종, 사진 등록 / 생일 알림 | SwiftUI Forms, `UserNotifications` |
 | **4. 호흡수 체크**     | 자이로센서 이용한 가슴 움직임 감지 (정확도 한계 고려) / 수동 타이머 주력 | `CoreMotion`, `CoreML` (추후) |
-| **5. 증상 기반 AI 상담** | 증상 입력 → Apple Intelligence API 기반 대화형 상담, 병원 방문 필요 여부 판단. ⚠️ **주의: 본 기능은 수의사의 진단을 대체할 수 없으며, 의료적 조언이 아닙니다. 항상 전문가와 상담하세요.** | Apple Intelligence API (iOS18+), SwiftData or LLM Proxy |
+| **5. 증상 기반 AI 상담** | 증상 입력 → Apple Intelligence API 기반 대화형 상담, 병원 방문 필요 여부 판단. ⚠️ **주의: 본 기능은 수의사의 진단을 대체할 수 없으며, 의료적 조언이 아닙니다. 항상 전문가와 상담하세요.** | Apple Intelligence API (iOS18+), SwiftData |
 | **6. 주간/월간 건강 리포트** | 배변/투약/호흡 등의 통계를 PDF로 생성, 보호자 공유 가능 | Swift Charts, PDFKit |
-| **7. 체중 관리 (옵션)** | 체중 기록, 표준체중과 비교, 경고 메시지 | Charts, CoreData |
-| **8. 다묘 등록 기능** | 고양이 여러 마리 관리, 각 프로필 분리 | CoreData or SwiftData |
+| **7. 체중 관리 (옵션)** | 체중 기록, 표준체중과 비교, 경고 메시지 | Charts, SwiftData |
+| **8. 다묘 등록 기능** | 고양이 여러 마리 관리, 각 프로필 분리 | SwiftData |
 
 ### 2.2. 사용자 경험(UX) 개선
 
@@ -77,7 +77,7 @@
 |----------------|----------------|
 | **언어**         | Swift (최신 버전) |
 | **UI 프레임워크** | SwiftUI (iOS 17 기준), UIKit 병행 가능 |
-| **로컬 데이터**   | CoreData 또는 SwiftData |
+| **로컬 데이터**   | SwiftData |
 | **백엔드**       | Supabase (PostgreSQL, 인증, 스토리지, Edge Functions) |
 | **알림 기능**     | UserNotifications Framework |
 | **AI 연동**       | Apple Intelligence API *(iOS 18 이상)* 또는 GPT API (백업용) |

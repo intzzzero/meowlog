@@ -1,0 +1,32 @@
+{
+  "source": "/Users/syjeong/development/Meowlog/Meowlog/Views/Dashboard/DashboardView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "홈",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "안녕하세요, %@!",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "대시보드 기능은 곧 추가될 예정입니다.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 18
+        }
+      }
+    ]
+  },
+  "version": 1
+}

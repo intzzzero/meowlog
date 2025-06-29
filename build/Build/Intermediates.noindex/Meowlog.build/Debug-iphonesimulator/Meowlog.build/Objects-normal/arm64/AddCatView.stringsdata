@@ -1,0 +1,168 @@
+{
+  "source": "/Users/syjeong/development/Meowlog/Meowlog/Views/Profile/AddCatView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "고양이 등록",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "기본 정보",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "날짜 정보",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "추가 정보",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "이름",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "품종 (선택사항)",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "성별",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "중성화 수술 완료",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "고양이 사진을 추가해보세요",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "사진 선택",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 43
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ %@",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "생일 알고 있음",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "생일",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "입양일 기록",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "입양일",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "메모",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "체중 (kg)",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 89
+        }
+      },
+      {
+        "comment": "",
+        "key": "0.0",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "취소",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "저장",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 110
+        }
+      }
+    ]
+  },
+  "version": 1
+}

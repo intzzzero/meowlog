@@ -1,0 +1,40 @@
+{
+  "source": "/Users/syjeong/development/Meowlog/Meowlog/Views/MainTabView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "홈",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "건강기록",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "투약관리",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "프로필",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 32
+        }
+      }
+    ]
+  },
+  "version": 1
+}
