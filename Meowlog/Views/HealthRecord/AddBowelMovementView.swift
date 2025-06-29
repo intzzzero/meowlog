@@ -10,7 +10,7 @@ struct AddBowelMovementView: View {
     @State private var selectedCat: Cat?
     @State private var selectedDate = Date()
     @State private var bowelMovementType = BowelMovementType.normal
-    @State private var consistency = BowelMovementConsistency.normal
+
     @State private var notes = ""
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var imageData: Data?
@@ -25,8 +25,7 @@ struct AddBowelMovementView: View {
                 DateTimeSection(selectedDate: $selectedDate)
                 
                 BowelMovementStatusSection(
-                    bowelMovementType: $bowelMovementType,
-                    consistency: $consistency
+                    bowelMovementType: $bowelMovementType
                 )
                 
                 PhotoSection(
@@ -36,7 +35,9 @@ struct AddBowelMovementView: View {
                 
                 NotesSection(notes: $notes)
                 
-                HealthWarningSection(severity: bowelMovementType.severity)
+                BowelHealthWarningSection(
+                    bowelMovementType: bowelMovementType
+                )
             }
             .navigationTitle("배변 기록")
             .navigationBarTitleDisplayMode(.inline)
@@ -79,7 +80,7 @@ struct AddBowelMovementView: View {
         let record = HealthRecord.bowelMovement(
             date: selectedDate,
             type: bowelMovementType,
-            consistency: consistency,
+            consistency: .normal, // 기본값 사용
             notes: notes,
             imageData: imageData
         )
@@ -140,31 +141,31 @@ struct DateTimeSection: View {
 
 struct BowelMovementStatusSection: View {
     @Binding var bowelMovementType: BowelMovementType
-    @Binding var consistency: BowelMovementConsistency
     
     var body: some View {
-        Section("배변 상태") {
+        Section {
             Picker("배변 타입", selection: $bowelMovementType) {
                 ForEach(BowelMovementType.allCases, id: \.self) { type in
                     HStack {
                         Text(type.rawValue)
                         Spacer()
-                        if type.severity > 0 {
+                        if type.severity >= 4 {
+                            Text("🚨")
+                        } else if type.severity >= 2 {
                             Text("⚠️")
+                        } else if type.severity > 0 {
+                            Text("ℹ️")
                         }
                     }
                     .tag(type)
                 }
             }
             .pickerStyle(.menu)
-            
-            Picker("변 굳기", selection: $consistency) {
-                ForEach(BowelMovementConsistency.allCases, id: \.self) { consistency in
-                    Text(consistency.rawValue)
-                        .tag(consistency)
-                }
-            }
-            .pickerStyle(.segmented)
+        } header: {
+            Text("배변 상태")
+        } footer: {
+            Text("배변 상태를 정확히 선택해주세요. 이상 증상이 지속될 경우 수의사와 상담하시기 바랍니다.")
+                .font(.caption)
         }
     }
 }
@@ -255,25 +256,67 @@ struct NotesSection: View {
     }
 }
 
-struct HealthWarningSection: View {
-    let severity: Int
+struct BowelHealthWarningSection: View {
+    let bowelMovementType: BowelMovementType
+    
+    private var maxSeverity: Int {
+        bowelMovementType.severity
+    }
     
     var body: some View {
-        if severity > 2 {
-            Section {
+        Section {
+            VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundColor(.red)
-                    VStack(alignment: .leading) {
-                        Text("주의가 필요한 상태입니다")
+                    if maxSeverity >= 4 {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.red)
+                        Text("응급 상황")
                             .font(.headline)
                             .foregroundColor(.red)
-                        Text("지속되거나 악화될 경우 수의사와 상담하세요")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                    } else if maxSeverity >= 2 {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.orange)
+                        Text("주의 필요")
+                            .font(.headline)
+                            .foregroundColor(.orange)
+                    } else if maxSeverity > 0 {
+                        Image(systemName: "info.circle.fill")
+                            .foregroundColor(.blue)
+                        Text("관찰 필요")
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                    } else {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.green)
+                        Text("정상 상태")
+                            .font(.headline)
+                            .foregroundColor(.green)
                     }
+                    Spacer()
+                }
+                
+                Text(bowelMovementType.healthConcern)
+                    .font(.body)
+                    .foregroundColor(.primary)
+                
+                if maxSeverity >= 4 {
+                    Text("즉시 동물병원에 방문하시기 바랍니다.")
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.red)
+                } else if maxSeverity >= 2 {
+                    Text("지속될 경우 동물병원 상담을 권장합니다.")
+                        .font(.body)
+                        .foregroundColor(.orange)
+                } else if maxSeverity > 0 {
+                    Text("계속 관찰하시고 변화가 있으면 기록해주세요.")
+                        .font(.body)
+                        .foregroundColor(.blue)
                 }
             }
+            .padding(.vertical, 8)
+        } header: {
+            Text("건강 상태 분석")
         }
     }
 }

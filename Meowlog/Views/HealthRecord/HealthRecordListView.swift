@@ -5,6 +5,7 @@ struct HealthRecordListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var healthRecords: [HealthRecord]
     @State private var showingAddBowelMovement = false
+    @State private var showingAddUrineRecord = false
     
     var body: some View {
         NavigationStack {
@@ -29,8 +30,16 @@ struct HealthRecordListView: View {
                         Button(action: {
                             showingAddBowelMovement = true
                         }) {
-                            Label("배변 기록", systemImage: "💩")
+                            Label("배변 기록", systemImage: "toilet")
                         }
+                        
+                        Button(action: {
+                            showingAddUrineRecord = true
+                        }) {
+                            Label("소변 기록", systemImage: "drop")
+                        }
+                        
+                        Divider()
                         
                         Button(action: {
                             // TODO: 다른 건강 기록들
@@ -44,6 +53,9 @@ struct HealthRecordListView: View {
             }
             .sheet(isPresented: $showingAddBowelMovement) {
                 AddBowelMovementView()
+            }
+            .sheet(isPresented: $showingAddUrineRecord) {
+                AddUrineRecordView()
             }
         }
     }

@@ -67,6 +67,23 @@ struct HealthRecordRow: View {
             
             return details.isEmpty ? nil : details.joined(separator: " • ")
             
+        case .urination:
+            var details: [String] = []
+            
+            if let type = record.urineType {
+                details.append(type.rawValue)
+            }
+            
+            if let color = record.urineColor {
+                details.append(color.rawValue)
+            }
+            
+            if let frequency = record.urineFrequency {
+                details.append(frequency.rawValue)
+            }
+            
+            return details.isEmpty ? nil : details.joined(separator: " • ")
+            
         case .respiratoryRate:
             if let rate = record.respiratoryRate {
                 return "\(rate) 회/분"
@@ -98,9 +115,40 @@ struct HealthRecordRow: View {
     private func getSeverityIndicator() -> some View {
         switch record.type {
         case .bowelMovement:
-            if let type = record.bowelMovementType, type.severity > 2 {
+            if let type = record.bowelMovementType {
+                if type.severity >= 4 {
+                    Circle()
+                        .fill(Color.red)
+                        .frame(width: 8, height: 8)
+                } else if type.severity >= 2 {
+                    Circle()
+                        .fill(Color.orange)
+                        .frame(width: 8, height: 8)
+                } else if type.severity > 0 {
+                    Circle()
+                        .fill(Color.blue)
+                        .frame(width: 8, height: 8)
+                }
+            }
+            
+        case .urination:
+            let maxSeverity = max(
+                record.urineType?.severity ?? 0,
+                record.urineColor?.severity ?? 0,
+                record.urineFrequency?.severity ?? 0
+            )
+            
+            if maxSeverity >= 4 {
                 Circle()
                     .fill(Color.red)
+                    .frame(width: 8, height: 8)
+            } else if maxSeverity >= 2 {
+                Circle()
+                    .fill(Color.orange)
+                    .frame(width: 8, height: 8)
+            } else if maxSeverity > 0 {
+                Circle()
+                    .fill(Color.blue)
                     .frame(width: 8, height: 8)
             }
             
