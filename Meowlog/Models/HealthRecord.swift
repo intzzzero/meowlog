@@ -1,5 +1,6 @@
 import SwiftData
 import Foundation
+import SwiftUI
 
 @Model
 final class HealthRecord {
@@ -114,16 +115,16 @@ enum HealthRecordType: String, CaseIterable, Codable {
         }
     }
     
-    var color: String {
+    var color: Color {
         switch self {
-        case .bowelMovement: return "brown"
-        case .urination: return "cyan"
-        case .respiratoryRate: return "blue"
-        case .heartRate: return "red"
-        case .weight: return "green"
-        case .temperature: return "orange"
-        case .symptom: return "purple"
-        case .general: return "gray"
+        case .bowelMovement: return .brown
+        case .urination: return .cyan
+        case .respiratoryRate: return .blue
+        case .heartRate: return .red
+        case .weight: return .green
+        case .temperature: return .orange
+        case .symptom: return .purple
+        case .general: return .gray
         }
     }
 }
