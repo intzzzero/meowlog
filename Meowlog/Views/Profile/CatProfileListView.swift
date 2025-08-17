@@ -10,47 +10,53 @@ struct CatProfileListView: View {
         NavigationStack {
             List {
                 ForEach(cats) { cat in
-                    HStack {
-                        // 프로필 사진
-                        if let imageData = cat.profileImageData,
-                           let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 50, height: 50)
-                                .clipShape(Circle())
-                        } else {
-                            Image(systemName: "cat.circle.fill")
-                                .font(.system(size: 50))
-                                .foregroundColor(.orange)
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(cat.name)
-                                .font(.headline)
-                            
-                            HStack {
-                                Text(cat.gender.icon)
-                                Text(cat.gender.rawValue)
-                                
-                                if cat.age > 0 {
-                                    Text("• \(cat.age)살")
-                                }
-                                
-                                if !cat.breed.isEmpty {
-                                    Text("• \(cat.breed)")
-                                }
+                    NavigationLink(destination: CatProfileDetailView(cat: cat)) {
+                        HStack {
+                            // 프로필 사진
+                            if let imageData = cat.profileImageData,
+                               let uiImage = UIImage(data: imageData) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 44, height: 44)
+                                    .clipShape(Circle())
+                            } else {
+                                Image(systemName: "cat.circle.fill")
+                                    .font(.system(size: 44))
+                                    .foregroundColor(.gray)
                             }
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(cat.name)
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                
+                                HStack(spacing: 4) {
+                                    Text(cat.gender.icon)
+                                    Text(cat.gender.rawValue)
+                                    
+                                    if cat.age > 0 {
+                                        Text("• \(cat.age)살")
+                                    }
+                                    
+                                    if !cat.breed.isEmpty {
+                                        Text("• \(cat.breed)")
+                                    }
+                                }
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
                         }
-                        
-                        Spacer()
+                        .padding(.vertical, 2)
                     }
-                    .padding(.vertical, 4)
+                    .listRowBackground(Color(.systemBackground))
                 }
                 .onDelete(perform: deleteCats)
             }
+            .listStyle(PlainListStyle())
+            .background(Color(.systemBackground))
             .navigationTitle("프로필")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

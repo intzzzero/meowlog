@@ -5,7 +5,8 @@ struct HealthRecordRow: View {
     let record: HealthRecord
     
     var body: some View {
-        HStack(spacing: 12) {
+        NavigationLink(destination: HealthRecordDetailView(record: record)) {
+            HStack(spacing: 12) {
             // 아이콘
             Text(record.type.icon)
                 .font(.title2)
@@ -48,8 +49,10 @@ struct HealthRecordRow: View {
                     .font(.caption)
                     .foregroundColor(.orange)
             }
+            }
+            .padding(.vertical, 4)
         }
-        .padding(.vertical, 4)
+        .buttonStyle(PlainButtonStyle())
     }
     
     private func getRecordDetails() -> String? {
@@ -191,7 +194,11 @@ struct HealthRecordRow: View {
         notes: "정상적인 배변"
     )
     
-    List {
-        HealthRecordRow(record: record)
+    NavigationStack {
+        List {
+            HealthRecordRow(record: record)
+        }
+        .navigationTitle("건강 기록")
     }
+    .modelContainer(for: HealthRecord.self, inMemory: true)
 } 

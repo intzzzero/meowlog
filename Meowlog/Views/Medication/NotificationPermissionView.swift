@@ -4,7 +4,6 @@ struct NotificationPermissionView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var notificationManager = NotificationManager.shared
     @State private var isRequestingPermission = false
-    @State private var showingAddMedication = false
     
     var body: some View {
         NavigationStack {
@@ -88,9 +87,6 @@ struct NotificationPermissionView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showingAddMedication) {
-                AddMedicationScheduleView()
-            }
         }
     }
     
@@ -103,7 +99,7 @@ struct NotificationPermissionView: View {
             await MainActor.run {
                 isRequestingPermission = false
                 if granted {
-                    showingAddMedication = true
+                    dismiss()
                 }
             }
         }

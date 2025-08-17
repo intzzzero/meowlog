@@ -111,7 +111,8 @@ struct CatSelectionSection: View {
             if cats.count == 1 {
                 HStack {
                     if let cat = cats.first {
-                        CatProfileRow(cat: cat)
+                        Text(cat.name)
+                            .font(.headline)
                     }
                 }
                 .onAppear {
@@ -119,8 +120,10 @@ struct CatSelectionSection: View {
                 }
             } else {
                 Picker("고양이", selection: $selectedCat) {
+                    Text("고양이를 선택하세요")
+                        .tag(nil as Cat?)
                     ForEach(cats, id: \.id) { cat in
-                        CatProfileRow(cat: cat)
+                        Text(cat.name)
                             .tag(cat as Cat?)
                     }
                 }
@@ -321,31 +324,6 @@ struct BowelHealthWarningSection: View {
     }
 }
 
-struct CatProfileRow: View {
-    let cat: Cat
-    
-    var body: some View {
-        HStack {
-            if let imageData = cat.profileImageData,
-               let uiImage = UIImage(data: imageData) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 30, height: 30)
-                    .clipShape(Circle())
-            } else {
-                Image(systemName: "cat.circle.fill")
-                    .font(.title2)
-                    .foregroundColor(.orange)
-            }
-            
-            Text(cat.name)
-                .font(.headline)
-            
-            Spacer()
-        }
-    }
-}
 
 #Preview {
     AddBowelMovementView()
