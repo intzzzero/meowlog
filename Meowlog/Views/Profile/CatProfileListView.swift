@@ -58,6 +58,10 @@ struct CatProfileListView: View {
             .listStyle(PlainListStyle())
             .background(Color(.systemBackground))
             .navigationTitle("프로필")
+            .safeAreaInset(edge: .bottom) {
+                BannerAdView()
+                    .background(Color(.systemBackground))
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {

@@ -29,6 +29,11 @@ struct MedicationListView: View {
             .listStyle(PlainListStyle())
             .background(Color(.systemBackground))
             .navigationTitle("투약 관리")
+            .safeAreaInset(edge: .bottom) {
+                BannerAdView()
+                    .background(Color(.systemBackground))
+                    .ignoresSafeArea(.container, edges: .horizontal)
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

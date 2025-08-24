@@ -69,6 +69,11 @@ struct HealthRecordListView: View {
             }
             .background(Color(.systemBackground))
             .navigationTitle("건강 기록")
+            .safeAreaInset(edge: .bottom) {
+                BannerAdView()
+                    .background(Color(.systemBackground))
+                    .ignoresSafeArea(.container, edges: .horizontal)
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {

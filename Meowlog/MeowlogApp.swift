@@ -8,9 +8,11 @@
 import SwiftUI
 import SwiftData
 import UserNotifications
+import GoogleMobileAds
 
 @main
 struct MeowlogApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var notificationManager = NotificationManager.shared
     
     var sharedModelContainer: ModelContainer = {
@@ -34,6 +36,7 @@ struct MeowlogApp: App {
             MainTabView()
                 .environmentObject(NotificationManager.shared)
                 .onAppear {
+                    AdsPrivacyManager.requestATTAuthorizationIfNeeded()
                     setupNotifications()
                 }
         }

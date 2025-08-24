@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import GoogleMobileAds
 
 struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
@@ -167,6 +168,11 @@ struct DashboardView: View {
                 .padding(.vertical)
             }
             .navigationTitle("홈")
+            .safeAreaInset(edge: .bottom) {
+                BannerAdView()
+                    .background(Color(.systemBackground))
+                    .ignoresSafeArea(.container, edges: .horizontal)
+            }
         }
     }
 }
